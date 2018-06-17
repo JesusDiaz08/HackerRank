@@ -2,11 +2,20 @@
 """
 Created on Sat Jun 16 12:58:27 2018
 
-@author: kaimorts
+@author: Díaz Medina Jesús Kaimorts
 @subject: Theory of Comunications and Signals.
 @group: 3CV7.
 @title: Second departamental project
 @school: Escuela Superior de Cómputo
+
+
+@Steps:
+    1. Run the code
+    **Specify the center of function with '*' after the numer
+    2. Input the X[n] discrete function
+       Input the H[n] discrete function
+       
+       
 """
 
 #Import necessary dependencies
@@ -120,26 +129,50 @@ infoGn(Hn,centerH,Hi,Hf)
 #Draw both functions: X(n) and H(n)
 
 #Draw X(n) function
+#plt.figure(1)
 plt.figure(1)
-#plt.subplot(211)
+plt.subplot(211)
 markerline, stemlines, baseline = plt.stem(rangeXn, Xn, '-.')
 plt.setp(baseline, color='r', linewidth=2)
-plt.title("X(n)")
+plt.title("X[n]")
 plt.grid(True)
 
+print("\n\n")
 #Draw H(n) function
-plt.figure(2)
-#plt.subplot(212)
+#plt.figure(2)
+plt.subplot(212)
 markerline, stemlines, baseline = plt.stem(rangeHn, Hn, '-.')
 plt.setp(baseline, color='b', linewidth=2)
-plt.title("H(n)")
+plt.title("H[n]")
 plt.grid(True)
 
 plt.show()
 
+#Convolution of function
+Yn = np.convolve(Xn,Hn).tolist()
+Yi = Xi+Hi
+Yf = Xf+Hf-1
+rangeYn = np.arange(Yi,Yf)
+
+print("\nY[n]: ",Yn)
+print("Type: ",type(Yn))
+print("Yi: ",Yi)
+print("Yf: ",Yf)
+print("Range: ",rangeYn)
 
 
-Yn = np.convolve(Xn,Hn)
+plt.figure(2)
+markerline, stemlines, baseline = plt.stem(rangeYn, Yn, '-.')
+plt.setp(baseline, color='r', linewidth=2)
+plt.title("Y[n] = X[n]*H[n]")
+plt.grid(True)
+plt.show()
+
+
+
+
+
+
 
 
 
